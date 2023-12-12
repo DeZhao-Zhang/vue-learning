@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<script src="https://unpkg.com/vue@3"></script>
+<script src="https://unpkg.com/vue-router@4"></script>
+<body>
+<div id="app">
+  <h1>Hello App!</h1>
+  <p>
+    <router-link to="/users/johnny">johnny</router-link>
+    <router-link to="/users/jolyne">jolyne</router-link>
+  </p>
+  <router-view></router-view>
+</div>
+<script>
+  const User = {template: '<div>User {{$route.params.id}}</div>'}
+
+  const routes = [
+    {path:'/users/:id', component:User},
+  ]
+
+  const router = VueRouter.createRouter({
+    history: VueRouter.createWebHashHistory(),
+    routes,
+  })
+
+  const app = Vue.createApp({})
+
+  app.use(router)
+
+  app.mount('#app')
+</script>
+</body>
+</html>
